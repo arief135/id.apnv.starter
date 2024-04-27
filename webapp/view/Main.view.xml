@@ -1,30 +1,53 @@
 <mvc:View
-	controllerName="id.apnv.starter.controller.Main"
-	displayBlock="true"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core"
-	core:require="{
-		formatter: 'id/apnv/starter/model/formatter'
-	}">
-
-	<Page
-		title="{i18n>appTitle}"
-		id="page">
-		<content>
-			<IllustratedMessage
-				title="{i18n>appTitle}"
-				illustrationType="sapIllus-SuccessHighFive"
-				enableVerticalResponsiveness="true"
-				description="{i18n>appDescription}">
-				<additionalContent>
-					<Button
-						id="helloButton"
-						text="{formatter: 'formatter.formatValue', path: 'i18n>btnText'}"
-						press="sayHello" />
-				</additionalContent>
-			</IllustratedMessage>
-		</content>
-	</Page>
-
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:tnt="sap.tnt"
+    controllerName="id.apnv.starter.controller.Main"
+>
+    <tnt:ToolPage id="toolPage">
+        <tnt:header>
+            <f:ShellBar
+                title="Title"
+                secondTitle="Dashboard"
+                showMenuButton="true"
+                homeIcon="./images/logo_ui5.png"
+                showCopilot="false"
+                showNotifications="false"
+                menuButtonPressed="onMenuButtonPress"
+                showProductSwitcher="false"
+            >
+                <f:profile>
+                    <Avatar initials="UI" />
+                </f:profile>
+            </f:ShellBar>
+        </tnt:header>
+        <tnt:sideContent>
+            <core:Fragment
+                fragmentName="id.apnv.starter.view.SideNavigation"
+                type="XML"
+            />
+        </tnt:sideContent>
+        <tnt:mainContents>
+            <NavContainer
+                id="pageContainer"
+                initialPage="page2"
+            >
+                <pages>
+                    <ScrollContainer
+                        id="proxy"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                    >
+                        <mvc:XMLView
+                            viewName="id.apnv.starter.view.Content"
+                        />
+                    </ScrollContainer>
+                </pages>
+            </NavContainer>
+        </tnt:mainContents>
+    </tnt:ToolPage>
 </mvc:View>
